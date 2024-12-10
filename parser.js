@@ -192,7 +192,8 @@ async function parseAdDetailsWithPhonePuppeteer(adUrl) {
         const rooms = title.charAt(0);
         const location = $('.offer__location').text().trim().replace(/\n\s*показать на карте$/, '');
         const city = location.split(',')[0].trim();
-        const district = location.split(',')[1].trim();
+        //const district = location.split(',')[1].trim();
+        const district = location.split(',')[1].trim().replace(/\s*р-н$/, '') || '';
         const floorElement = $('div.offer__info-item[data-name="flat.floor"] .offer__advert-short-info').text().trim();
         const floorMatch = floorElement.match(/(\d+)\sиз\s(\d+)/);
         const floor = floorMatch ? { current: floorMatch[1], total: floorMatch[2] } : null;
